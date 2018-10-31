@@ -17,7 +17,7 @@ The Kafka plugin from:
 
 https://github.com/TP-Lab/kafka_plugin
 
-is based on the MongoDB plugin and appears to work. If can be built after the rest of the binaries. The approach I chose was bring up a eosio/builder container and use it for re-builds. Then I transferred the newly built nodeos binary to the running eosio/eos container. EOS plugins are built as static libraries and linked in the main node binary at link time. The build of the plugin itself is straightforward using the provided cmake files and the short description on their GitHub.
+is based on the MongoDB plugin and appears to work. If can be built after the rest of the binaries. The approach I chose, was to bring up a eosio/builder container and use it for re-builds. Then I transferred the newly built nodeos binary to the running eosio/eos container. EOS plugins are built as static libraries and linked in the main node binary at link time. The build of the plugin itself is straightforward using the provided cmake files and the short description on their GitHub.
 
 ## Running Kafka
 
@@ -50,10 +50,10 @@ once the two containers are in the same network start nodeos with:
 /opt/eosio/bin/nodeos --config-dir=/opt/eosio/bin/data-dir --genesis-json=/opt/eosio/bin/data-dir/genesis.json --plugin eosio::kafka_plugin --kafka-uri 172.20.0.3:9092 --accept_trx_topic eos_accept_topic  --applied_trx_topic eos_applied_topic --kafka-block-start 100 --kafka-queue-size 5000
 ```
 
-genesis.json should match the Mainnet genesis available in Internet. List of peers can be obtained from example from:
+genesis.json should match the Mainnet genesis available in Internet, otherwise the other peers would reject the connection. List of peers can be obtained from example from:
 https://eosnodes.privex.io/
 
-The genesis file should match otherwise the other pees would reject the connection. The peers need to be pasted in config.ini like so:
+The peers need to be pasted in config.ini like so:
 
 ```
 p2p-peer-address = api-full1.eoseoul.io:9876
