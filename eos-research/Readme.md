@@ -30,8 +30,8 @@ it brings up both the Kafka and Zookeeper containers.
 I created the needed topics using:
 
 ```shell
-/opt/kafka_2.11-2.0.0/bin/kafka-console-consumer.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic eos_applied_topic
-/opt/kafka_2.11-2.0.0/bin/kafka-console-consumer.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic eos_accept_topic
+/opt/kafka/bin/kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic eos_applied_topic
+/opt/kafka/bin/kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic eos_accept_topic
 ```
 
 from within the Kafka container.
@@ -41,7 +41,7 @@ from within the Kafka container.
 Firstly connect the nodeos container to the kafka/zookeeper docker network with:
 
 ```shell
-docker network connect nodeos_container_id kafka_network_id
+docker network connect sanexporter_default nodeos_container_id 
 ```
 
 once the two containers are in the same network start nodeos with:
